@@ -4,9 +4,17 @@
         <title>login_auth</title>
         <link rel="stylesheet" href="/static/styles.css">
         <style>
-            p{
+            p,marquee{
                 font-family: arial;
             }
+            marquee{
+                font-size:20px ;
+            }
+            span{
+                color: green;
+                font-size: 20px;
+            }
+
         </style>
     </head>
     <body>
@@ -29,7 +37,7 @@
     
         </form>
         
-        <marquee> <b> for visiting usename,password: temp. or you can create using signup</b></marquee>
+        <marquee> temporary username and password: <span>temp</span>. or you can <span>register</span> above.</marquee>
 
         {% if alert %}
         <script>
