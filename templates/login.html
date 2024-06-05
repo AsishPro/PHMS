@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>login_auth</title>
+        <link rel="stylesheet" href="/static/styles.css">
+        <style>
+            p{
+                font-family: arial;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- post method hides ,get method shows  -->
+        <form action="/" method="post">
+            <div class="container1">
+                <p class="one">Username:</p>
+                <input class="one" type="text" name="username" required>
+                <br>
+                <p class="one">Password:</p>
+                <input type="password" name="pass" required>
+                <br><br>
+                <button type="submit">Login</button>
+            
+            <br><br>
+            <div class="register-link">
+                <p>New Account : <a style="text-decoration: none; color:green" href="/register">Register here</a>.</p>
+            </div>
+        </div>
+    
+        </form>
+<!--         
+        <marquee>Please Enter the Username and Password to Continue</marquee> -->
+
+        {% if alert %}
+        <script>
+            alert("Invalid Username or Passworld! Try again.")
+        </script>
+        {% endif %}
+
+
+    </body>
+</html>

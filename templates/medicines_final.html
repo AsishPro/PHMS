@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Search</title>
+    <style>
+        .container{
+            margin-left: 0;
+            padding: 20px;
+        }
+        .big{
+            margin-left:10px;
+            padding:7px;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    {% include 'navbar.html' %}
+    
+    <div class="container">
+        <h1>Disease Search</h1>
+
+        <form action="/medicines_list" method="post">
+            <label  style='font-size:15px;' for="disease">Select a Disease:</label>
+            <select class='big' id="disease" name="disease">
+                <option value="" selected hidden></option>
+                {% for disease in diseases %}
+                    <option value="{{ disease }}">{{ disease }}</option>
+                {% endfor %}
+            </select>
+            <input class='big' type="submit" value="Submit">
+        </form>
+        
+    </div>
+    
+</body>
+</html>

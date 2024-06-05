@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: beige;
+            
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .main-page {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .main-page h2 {
+            color: #333;
+        }
+        .main-page p {
+            color: #666;
+            line-height: 1.6;
+        }
+       
+        li{
+            padding:5px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <h1>Health Management System</h1>
+        
+        <div class="main-page">
+            <h2>Welcome to Health Management System</h2>
+            <p>
+                Our Health Management System is designed to provide comprehensive health-related information and services.
+            </p>
+            <p>
+                It includes the following main pages:
+            </p>
+            <ul>
+                <li>
+                    <strong>Disease Prediction from Symptoms:</strong> This page allows users to input their symptoms and receive predictions about possible diseases.
+                </li>
+                <li>
+                    <strong>Medicines Information from Disease:</strong> Here, users can search for information about medicines based on the disease they are interested in.
+                </li>
+                <li>
+                    <strong>Doctors and Hospitals Page from Disease:</strong> This page provides details about doctors and hospitals specialized in treating specific diseases.
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

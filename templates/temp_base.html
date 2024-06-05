@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Symptoms Form</title>
+    
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/confirm.js"></script>
+    
+    <!-- for normal html use /projectfile/static/confirm.js -->
+
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}"> -->
+    <!-- <style>
+        {% include 'styles.css' %}
+    </style> -->
+</head>
+<body>
+    <div class="container">
+        <h1>
+            THis is a heading
+        </h1>
+        <h1>Disease Symptoms</h1>
+
+        <form action="/predict" method="post">
+            <div class="form-group">
+                
+                <label for="symptom1">Symptom1:</label>
+                <!-- Use a select input for symptoms with options generated dynamically -->
+                <select id="symptom1" name="s1">
+                    <option value="">Select Symptom</option>
+                    {% for symptom in symptoms %}
+                        <option value="{{ symptom }}">{{ symptom }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="symptom2">Symptom2:</label>
+                <select id="symptom2" name="s2">
+                    <option value="">Select Symptom</option>
+                    {% for symptom in symptoms %}
+                        <option value="{{ symptom }}">{{ symptom }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="symptom3">Symptom3:</label>
+                <select id="symptom3" name="s3">
+                    <option value="">Select Symptom</option>
+                    {% for symptom in symptoms %}
+                        <option value="{{ symptom }}">{{ symptom }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="symptom4">Symptom4:</label>
+                <select id="symptom4" name="s4">
+                    <option value="">Select Symptom</option>
+                    {% for symptom in symptoms %}
+                        <option value="{{ symptom }}">{{ symptom }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- <label for="symptom5">Symptom5:</label>
+                <select id="symptom5" name="s5">
+                    <option value="">Select Symptom</option>
+                    {% for symptom in symptoms %}
+                        <option value="{{ symptom }}">{{ symptom }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="symptom6">Symptom6:</label>
+                <select id="symptom6" name="s6">
+                    <option value="">Select Symptom</option>
+                    {% for symptom in symptoms %}
+                        <option value="{{ symptom }}">{{ symptom }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="symptom7">Symptom7:</label>
+                <select id="symptom7" name="s6">
+                    <option value="">Select Symptom</option>
+                    {% for symptom in symptoms %}
+                        <option value="{{ symptom }}">{{ symptom }}</option>
+                    {% endfor %}
+                </select> -->
+
+
+            </div>
+            <input type="submit" value="Predict">   
+        </form>
+    </div>
+    <div class="result">
+        {% if prediction %}
+            <p>Prediction Result: {{ prediction }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

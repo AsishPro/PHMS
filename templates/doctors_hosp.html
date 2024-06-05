@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Search</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .container{
+            margin-left: 0;
+            padding: 20px;
+            transition: margin-left 0.5s;
+        }
+        .big{
+            margin-left:10px;
+            padding:7px;
+            border-radius: 10px;
+        }
+        a {
+            
+            text-decoration: none; 
+            padding:4px;
+            border-radius: 5px;
+            color: black; 
+            cursor: pointer;
+            position: relative; 
+            display: inline-block;
+            transition: box-shadow 0.3s;
+        }
+        a:hover {
+            background-color: rgb(22, 142, 22);
+            color:white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow on hover */
+        }
+
+
+    </style>
+</head>
+<body>
+
+    
+    {% include 'navbar.html' %}
+    
+    {% if not selected_disease %}
+    <div class="container">
+        <h1>Disease Search</h1>
+
+        <form action="/doctors_hosp" method="post">
+            <label  style='font-size:15px;' for="disease">Select a Disease:</label>
+            <select class='big' id="disease" name="disease">
+                <option value="" selected hidden></option>
+                {% for disease in diseases %}
+                    <option value="{{ disease }}">{{ disease }}</option>
+                {% endfor %}
+            </select>
+            <input class='big' type="submit" value="Submit">
+        </form>
+    </div>
+    {% endif %}
+
+    {% if selected_disease  %}
+        <div class="container">
+        <h2>Doctors and Hospitals for {{ selected_disease }} disease - {{categories[0]}}</h2>
+        <table>
+            <tr>
+                <th>Doctor</th>
+                <th>Hospital</th>
+            </tr>
+            {% for doctor, hospital, link in doctor_hospitals_links1 %}
+            <tr>
+                <td>{{ doctor }}</td>
+                <td><a href="{{ link }}" target="_blank" title="Click to visit">{{ hospital }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+
+        <div class="container">
+            <h2>Doctors and Hospitals for {{ selected_disease }} disease - {{categories[1]}}</h2>
+            <table>
+                <tr>
+                    <th>Doctor</th>
+                    <th>Hospital</th>
+                </tr>
+                {% for doctor, hospital,link in doctor_hospitals_links2 %}
+                <tr>
+                    <td>{{ doctor }}</td>
+                    <td><a href="{{ link }}" target="_blank" title="Click to visit">{{ hospital }}</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    {% endif %}
+
+
+</body> 
+</html>

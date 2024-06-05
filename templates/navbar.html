@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar</title>
+    <style>
+        body {
+             font-family: Arial, sans-serif;
+         }
+ 
+         .sidenav {
+             height: 100%;
+             width: 0;
+             position: fixed;
+             z-index: 1;
+             top: 0;
+             left: 0;
+             background-color: rgba(255, 255, 255, 0.95);
+             overflow-x: hidden;
+             transition: 0.5s;
+            
+             border-top-right-radius: 10px; /* Rounded border on the top-right corner */
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow */
+
+             display: flex;  
+             flex-direction: column; 
+             justify-content: center; 
+             
+         }
+ 
+         .sidenav a {
+             border-radius: 5px;
+             padding: 10px 15px;
+             text-decoration: none;
+             font-size: 18px;
+             color: #333;  
+             margin-bottom:10px;
+         }
+ 
+         .sidenav a:hover {
+            color: white;
+             background-color: #007bff;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+         }
+ 
+ 
+     </style>
+</head>
+<body>
+    <div class="sidenav" id="sidenav">
+        <a href="/home">Home</a>
+        <a href="/predict" method="get">Disease Prediction</a>
+        <a href="/medicines_list">Medicines Information</a>
+        <a href="/doctors_hosp">Doctors and Hospitals</a>
+    </div>
+
+    <img id="toggleButton" src="/static/menu.png" alt="Menu" style="width: 30px; margin: 10px; height: 30px; cursor: pointer;" onclick="toggleNav()">
+
+    <script >
+
+        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('click', function(event) {
+            var sidenav = document.getElementById('sidenav');
+            var toggleButton = document.getElementById('toggleButton');
+            
+            if (!sidenav.contains(event.target) && event.target !== toggleButton) {
+                document.getElementById('sidenav').style.width = '0';
+            }
+        });
+    });
+
+    function toggleNav() {
+        var sidenav = document.getElementById('sidenav');
+        if (sidenav.style.width === '200px') {
+            document.getElementById('sidenav').style.width = '0';
+        } else {
+            document.getElementById('sidenav').style.width = '200px';
+        }
+    }
+
+    </script>
+</body>
+</html>

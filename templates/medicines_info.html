@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicines Information</title>
+    <style>
+        /* Styles for medicine boxes */
+        html{
+            background-color: beige;
+        }
+        
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .medicine-box { 
+            margin-left: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer; 
+        }
+
+        .medicine {
+            font-weight: bold;
+        }
+
+        /* Styles for popup */
+        .popup {
+            display: none; 
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            background-color: #ffffff;
+            padding:20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .popup .close {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <h2>Medicines Information</h2>
+        
+        {% for medicine, description,dosage, precaution,side in medicines_info %}
+        <div class="medicine-box" onclick="showPopup(`{{ medicine }}`, `{{ dosage }}`, `{{ precaution }}`, `{{ side }}`)">
+            <p class="medicine">{{ medicine }}</p>
+            <p>{{ description }}</p>
+        </div>
+        {% endfor %}
+
+        
+        <form action="/medicines_list" method="get">
+            <input type="submit" value="Go Back">
+        </form>
+    </div>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2 id="medicineName"></h2>
+        <h3>Detailed Information</h3>
+        <p id="dosing"></p>
+        <p id="precautions"></p>
+        <p id="sideEffects"></p>
+    </div>
+
+    <!-- JavaScript for popup -->
+    <script>
+        function showPopup(medicine, dosing, precautions, side) {
+
+            document.getElementById("medicineName").innerText = medicine;
+            document.getElementById("dosing").innerHTML = "<b>Dosing:</b> " + dosing;
+            document.getElementById("precautions").innerHTML = "<b>Precautions:</b> " + precautions;
+            document.getElementById("sideEffects").innerHTML = "<b>Side Effects:</b> " + side;
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
+</body>
+</html>
