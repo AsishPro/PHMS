@@ -212,11 +212,3 @@ def doctors():
 
     return render_template('doctors_hosp.html',diseases=data.dl[:-1])
     
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
-    # app.run(debug=True)
-    # ngrok.set_auth_token ("2cp3wE0TnBbGDuwlraaUxGPXqas_6MvUXCiNetc79PehrVRX5")
-    # ngrok_tunnel = ngrok.connect(5000)
-    # print('Public URL:', ngrok_tunnel.public_url)
-    # app.run()
