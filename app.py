@@ -11,6 +11,8 @@ from psycopg2 import sql
 
 app = Flask(__name__)    
 
+app.secret_key = 'NOT_A_SECRET'
+
 otp=''
 
 
@@ -21,6 +23,7 @@ with open(file_path, 'rb') as f:
 print(model)
 
 
+print(os.environ.get('pg_host'))
 def get_db_connection():
     conn = psycopg2.connect(
         host=os.environ.get('pg_host'),
