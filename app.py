@@ -4,49 +4,37 @@ import pickle
 import data
 import onetimepass
 import pandas as pd
-import psycopg2
 import os
 
-from psycopg2 import sql
+from pymongo import MongoClient
+
+mongo_uri = os.environ.get("mongo_url")
 
 app = Flask(__name__)    
 
 app.secret_key = 'NOT_A_SECRET'
-
 otp=''
-
-
 file_path = 'high_accuracy_named.pkl'
+
+# mongo
+mongo_uri = os.getenv('mongo_url')
+client = MongoClient(mongo_uri)
+db = client.phms
+collection = db.users
 
 with open(file_path, 'rb') as f:
     model = pickle.load(f)
 print(model)
 
 
-print(os.environ.get('pg_host'))
-def get_db_connection():
-    conn = psycopg2.connect(
-        host=os.environ.get('pg_host'),
-        user=os.environ.get('pg_user'),
-        password=os.environ.get('pg_password'),
-        dbname=os.environ.get('pg_database')
-    )
-    return conn
-
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        conn = get_db_connection()
-        cursor = conn.cursor()
+        
         username = request.form['username']
         password = request.form['pass']
 
-        cursor.execute('SELECT * FROM users WHERE username = %s AND password = %s', (username, password))
-
-        user = cursor.fetchone()
-
-        cursor.close()
-        conn.close()
+        user = collection.find_one({'name': username, 'password': password})
 
         if user:
             print('Login successful')
@@ -85,16 +73,13 @@ def validate_otp():
             print(request.form['otp'], otp)
             data = session.get('user_details')
             if data:
-                conn = get_db_connection()
-                cursor = conn.cursor()
-                insert = sql.SQL("INSERT INTO users (username, email, password) VALUES (%s, %s, %s);")
-                val = (data['fname'], data['email'], data['pass'])
-                cursor.execute(insert, val)
-
-                conn.commit()
-                cursor.close()
-                conn.close()
-                print("entry successful")
+                new_user = {
+                    'name': data['fname'],
+                    'email': data['email'],
+                    'password': data['pass']
+                }
+                collection.insert_one(new_user)
+                print("Entry successful")
                 return render_template('login.html')
             else:
                 return 'User details not found.'

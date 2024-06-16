@@ -3,10 +3,16 @@
 <head>
     <title>Home</title>
     <style> 
+        html{
+            background-color:  beige;
+            background-image: url('../static/images/1.jpg');
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-attachment: fixed; 
+        }       
         
         body {
             font-family: Arial, sans-serif;
-            background-color: beige;
             margin: 100px auto;
             display: flex;
             justify-content: center;
@@ -15,7 +21,7 @@
         form {
             background-color: #fff;
             border-radius: 8px;
-            padding: 20px;
+            padding: 40px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
         }
@@ -24,19 +30,24 @@
             display: block;
             padding-bottom:10px;
         }
+        input{
+            padding:5px;
+            font-size: 17px;
+        }
 
         input[type="text"],
         input[type="password"] {
             width: 90%;
-            padding: 10px;
+            padding: 7px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 4px;    
         }
 
         input[type="submit"] {
+            font-size:16px;
             display: block;
-            margin: 0 auto; 
+            margin: 10px auto; 
             background-color: #090;
             color: #fff;
             border: none;
