@@ -1,6 +1,7 @@
 # Patient-HealthCare-System
 developed using flask and python, based on ml model prediction datasets. Features include disease prediction based on symptoms, disease information, medicines inforamtion , hospital locations along with authentication using login,signup page using postgresql database.(updated to mongodb recently)
 
+### Below are images
 
 ![image](https://github.com/user-attachments/assets/ec130df3-f00f-44c4-ac23-690dab766b24)
 ![image](https://github.com/user-attachments/assets/a66311f5-4df3-4e00-becf-2250ecac4077)
