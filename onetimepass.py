@@ -1,6 +1,8 @@
 import math
 import random
 import smtplib
+import os
+
 
 def otp_function(email):
     
@@ -17,8 +19,8 @@ def otp_function(email):
     #host name
     s = smtplib.SMTP_SSL("smtp.gmail.com", 465)
     s.ehlo() 
-    Email_id = "lonewold38@gmail.com"
-    password = "zkpx ujpf hrxw jliv"
+    Email_id = os.environ.get('email')
+    password = os.environ.get('password')
     s.login(Email_id, password)
     send_to = email
 
